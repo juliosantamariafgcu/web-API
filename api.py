@@ -16,8 +16,11 @@ print(response.json())
 # Check if the request was successful (status code 200)
 if response.status_code == 200:
     # Write the response data to response JSON file
-    with open('response.json', 'w') as file:
-        json.dump(response.json(), file, indent=4)
-    print("The weather data has been written to 'response.json'.")
+    try:
+        with open('response.json', 'w') as file:
+            json.dump(response.json(), file, indent=4)
+            print(f"Data written to response.json")
+    except:
+        print(f"Failed to write data to response.json")
 else:
     print(f"Failed to retrieve data: {response.status_code}")
